@@ -18,7 +18,7 @@ class ExampleForm {
   }
 
   /**
-   * @param TitleValidator $validator
+   * @param mixed $validator
    */
   public function setTitleValidator($validator) {
     $this->titleValidator = $validator;
