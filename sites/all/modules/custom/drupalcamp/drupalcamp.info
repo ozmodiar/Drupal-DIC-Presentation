@@ -1,0 +1,6 @@
+name = "DrupalCamp"
+description = "This module provides exampels for the DrupalCamp presentation."
+package = "Other"
+version = "7.x-1.0"
+core = "7.x"
+project = "drupalcamp"

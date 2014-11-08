@@ -1,0 +1,18 @@
+<?php
+
+function drupalcamp_menu() {
+  $items = array();
+
+  $items['drupalcamp/example'] = array(
+    'title' => 'DrupalCamp Example Form',
+    'description' => 'This page shows the DrupalCamp Example form.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('drupalcamp_example_form'),
+    'access arguments' => array('access administration pages'),
+    'weight' => 0,
+    'file' => 'includes/drupalcamp.forms.inc',
+  );
+
+  return $items;
+}
+
