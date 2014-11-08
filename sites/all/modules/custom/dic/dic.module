@@ -1,0 +1,60 @@
+<?php
+/**
+ * @file
+ * This file contains all the dic hook implementations.
+ */
+
+// Also require the autoloader if drush is being used.
+if (php_sapi_name() == 'cli') {
+  dic_init();
+}
+
+/**
+ * Implements hook_init().
+ */
+function dic_init() {
+  static $registered = FALSE;
+  if (!$registered) {
+    $autoloader = DRUPAL_ROOT . '/vendor/autoload.php';
+    if (file_exists($autoloader)) {
+      $registered = TRUE;
+      require $autoloader;
+    }
+  }
+}
+
+/**
+ * Implements hook_admin_menu_cache_info().
+ */
+function dic_admin_menu_cache_info() {
+  $caches['dic'] = array(
+    'title' => t('Dependency Injection Container'),
+    'callback' => 'dic_clear_container_cache',
+  );
+
+  return $caches;
+}
+
+/**
+ * Implements hook_modules_enabled().
+ */
+function dic_modules_enabled($modules) {
+  dic_clear_container_cache();
+}
+
+/**
+ * Implements hook_modules_disabled().
+ */
+function dic_modules_disabled($modules) {
+  dic_clear_container_cache();
+}
+
+/**
+ * Clear the Dependency Injection Container.
+ */
+function dic_clear_container_cache() {
+  $container_path = drupal_realpath('public://') . '/.container/container.php';
+  if (file_exists($container_path)) {
+    unlink($container_path);
+  }
+}
