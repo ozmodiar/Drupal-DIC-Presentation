@@ -5,6 +5,25 @@ use Drupal\drupalcamp\Validator\TitleValidator;
 
 class ExampleForm {
 
+  /**
+   * @var TitleValidator
+   */
+  private $titleValidator;
+
+  /**
+   * @return TitleValidator
+   */
+  private function getTitleValidator() {
+    return $this->titleValidator;
+  }
+
+  /**
+   * @param TitleValidator $validator
+   */
+  public function setTitleValidator($validator) {
+    $this->titleValidator = $validator;
+  }
+
   public function buildMenu() {
     return array(
       'drupalcamp/example' => array(
@@ -36,8 +55,8 @@ class ExampleForm {
   }
 
   public function validateForm($form, &$form_state) {
-    $title_validator = new TitleValidator();
-    if (!$title_validator->validate($form_state['values']['title'])) {
+    $title_validator = $this->getTitleValidator();
+    if ($title_validator->validate($form_state['values']['title'])) {
       form_set_error('title', t('Title is too short!'));
     }
   }

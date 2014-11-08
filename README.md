@@ -1,4 +1,4 @@
-# Demo 2 - Object-Oriented module
+# Demo 3 - Dependency Injection
 
 **The Drupal core code is left out of this repository to put the focus fully on the important files.**
 
