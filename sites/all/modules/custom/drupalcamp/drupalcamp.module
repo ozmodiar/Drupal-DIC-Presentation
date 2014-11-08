@@ -3,8 +3,7 @@
 function drupalcamp_menu() {
   $items = array();
 
-  $example_form = new \Drupal\drupalcamp\Form\ExampleForm();
-  $items += $example_form->buildMenu();
+  $items += DIC::service('drupalcamp.example_form')->buildMenu();
 
   return $items;
 }

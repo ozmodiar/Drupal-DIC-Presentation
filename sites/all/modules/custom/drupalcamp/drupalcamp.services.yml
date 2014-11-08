@@ -1,0 +1,12 @@
+parameters:
+  drupalcamp.example_form.class: Drupal\drupalcamp\Form\ExampleForm
+  drupalcamp.title_validator.class: Drupal\drupalcamp\Validator\TitleValidator
+
+services:
+  drupalcamp.example_form:
+    class: "%drupalcamp.example_form.class%"
+    calls:
+      - ["setTitleValidator", ["@drupalcamp.title_validator"]]
+
+  drupalcamp.title_validator:
+    class: "%drupalcamp.title_validator.class%"
